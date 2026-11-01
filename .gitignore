@@ -10,3 +10,5 @@
 *.xdv
 resume.pdf
 preview.png
+__pycache__/
+.vscode/
