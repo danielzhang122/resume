@@ -1,0 +1,233 @@
+\documentclass[a4paper]{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[left=0.5in,right=0.5in,bottom=0.5in,top=0.4in]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+% Bullet lists (extra space between items)
+\setlist[itemize]{leftmargin=1.8em, rightmargin=1em, itemsep=5pt, topsep=1.5pt, parsep=0pt, partopsep=0pt}
+
+\textheight=11in
+\pagestyle{empty}
+\setlength{\parindent}{0pt} % Zeroes out all automatic paragraph indents
+
+\def\bull{\vrule height 0.8ex width .7ex depth -.1ex }
+% DEFINITIONS FOR RESUME %%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\area} [2] {
+    \vspace*{-9pt}
+    \begin{verse}
+        \textbf{#1}   #2
+    \end{verse}
+}
+
+\newcommand{\lineunder} {
+    \par\vspace*{-2pt}
+    \noindent\hrulefill
+    \par\vspace*{2pt}
+}
+
+\newcommand{\header}[1]{
+    \vspace*{3pt}
+    {\hspace*{-4pt}\large\textsc{#1}}
+    \lineunder
+}
+
+\newcommand{\employer} [3] {
+    { \textbf{#1} (#2)\\ \underline{\textbf{\emph{#3}}}\\  }
+}
+
+\newcommand{\contact} [3] {
+    \vspace*{-10pt}
+    \begin{center}
+        {\Huge \scshape {#1}}\\
+        #2 \\ #3
+    \end{center}
+    \vspace*{-6pt}
+}
+
+\newenvironment{achievements}{
+    \begin{list}
+        {$a\bullet$}{\topsep 0pt \itemsep -2pt}}{\vspace*{2pt}
+    \end{list}
+}
+
+\newcommand{\schoolwithcourses} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+    \vspace*{2pt}
+}
+
+\newcommand{\school} [4] {
+    \textbf{#1} #2 $\bullet$ #3\\
+    #4 \\
+}
+% END RESUME DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\vspace*{-20pt}
+
+
+%==== Profile ====%
+\vspace*{-12pt}
+\begin{center}
+    {\Huge \scshape {Daniel Zhang}}\\
+    \vspace{2pt}
+
+    \iffalse
+    {\itshape Mechatronics Engineering Lvl. III at McMaster University}\\
+    \vspace{3pt}
+    \fi
+
+\href{mailto:zhand40@mcmaster.ca}{zhand40@mcmaster.ca} $\cdot$
+\href{tel:4168225829}{416-822-5829} $\cdot$
+\href{https://www.linkedin.com/in/zhangdz}{linkedin/zhangdz} $\cdot$
+\href{https://github.com/danielzhang122}{github/danielzhang122} $\cdot$
+\href{https://zhangdz.ca}{zhangdz.ca} \\
+
+\end{center}
+\vspace*{-10pt}
+
+
+%==== Education ====%
+\header{Education}
+\textbf{Bachelor of Engineering, Mechatronics Engineering CO-OP}\hfill Hamilton, ON \par
+\textit{McMaster University, Level III}\hfill Expected Apr 2028
+\vspace{2mm}
+\begin{itemize}
+    \item Notable Coursework: Analog \& Digital Circuits, Statics, Dynamics, Electricity and Magnetism, Thermodynamics, Embedded Systems, Engineering Mathematics, Data Structures \& Algorithms
+\end{itemize}
+
+\vspace{1.5mm}
+
+%==== Skills ====%
+\header{Skills}
+\vspace{1.5mm}
+\textbf{Industry \& Safety:} Project Engineering, Process Flow Automation, Technical Writing, WHMIS, Lockout/Tagout
+\par\vspace{3pt}
+
+\textbf{Design, Modeling \& Hardware:} CAD (SOLIDWORKS --- CSWA Certified, Inventor, Fusion 360), FEA, NI Multisim, Embedded Systems, STM32, Soldering, 3D Printing, GD\&T
+\par\vspace{3pt}
+
+\textbf{Software:} Python, C/C\texttt{++}, MATLAB/Simulink, Julia, SMath, Maple, SQL, FlexPDE, Microsoft 365, Power Automate
+
+\vspace{1.5mm}
+
+%==== Experience ====%
+\header{Experience \& Involvement}
+\vspace{1.5mm}
+
+\textbf{Mechanical Sub-Team Member --- Wheel Assembly}\hfill Hamilton, ON \par
+\textit{McMaster Chem-E-Car}\hfill Sep 2026 -- Present
+\vspace{1mm}
+\begin{itemize}
+    \item Designing and modeling a custom wheel assembly in SolidWorks for a $40 \times 30 \times 18\text{ cm}$ vehicle, carrying up to a $500\text{ mL}$ water payload for the AIChE National Competition.
+    \item Designing an independent double wishbone suspension to isolate dynamic weight transfer, stabilizing the vehicle chassis to prevent false triggers on optical stopping sensors.
+    \item Collaborated with a team of 3 on an adjustable manual transmission, enabling on-site drivetrain tuning for target distances announced on competition day.
+\end{itemize}
+
+\vspace{1.5mm}
+
+\textbf{Nuclear Engineering Co-op Student}\hfill Cambridge, ON \par
+\textit{Eclipse Automation}\hfill Jan 2026 -- Present
+\vspace{1mm}
+\begin{itemize}
+    \item Authored FMEAs, FAT Plans, and System Design Descriptions for CSA N299.2/N299.3 rated tools, supporting milestones on the Pickering, Cernavodă, and Qinshan reactor refurbishment projects.
+    \item Performed FEA and Allowable Strength Design (ASD) calculations for nuclear tooling on the Pickering (RFBR) project, validating structural integrity and safety margins.
+    \iffalse
+    \item Facilitated CNSC regulatory approval for CNL's \$100M, 1M-lb SBWRS project by evaluating 450\texttt{+} Engineering RFIs for EOR impact and verifying 5,000\texttt{+} technical requirements across mechanical and electrical drawings, FAT Plans, and core validation deliverables.
+    \fi
+    \item Delivered project engineering support for Design Verification Testing (DVT) of 4 specialized manufacturing tools, partnering with toolmakers, automation technicians, electricians, and clients to validate system performance against design requirements and facilitate customer sign-off.
+    \item Facilitated CNSC regulatory approval for CNL's \$100M SBWRS project by verifying 5,000\texttt{+} technical requirements; built a Power Automate workflow to audit 1,000\texttt{+} engineering standards and flag discrepancies, cutting review time from 5 days to 8 hours.
+    \iffalse
+    \item Secured Bruce Power QA approval by developing a comprehensive Inspection Test Checklist (ITC) to validate manufacturing specifications and tolerances for custom-designed nuclear tooling.
+    \fi
+\end{itemize}
+
+\vspace{1.5mm}
+
+\iffalse
+\textbf{Marketing Team Member}\hfill Hamilton, ON \par
+\textit{Student Sustaining Hamilton}\hfill Sep 2025 -- Apr 2026
+\vspace{1mm}
+\begin{itemize}
+    \item Created clear, accessible promotional materials for events and campaigns to increase student engagement.
+    \item Collaborated with team members in planning McMaster University's first Ice Box Challenge, demonstrating the benefits of energy-efficient structures.
+\end{itemize}
+
+\vspace{1.5mm}
+\fi
+\iffalse
+
+
+\textbf{Tutor}\hfill Richmond Hill, ON \par
+\textit{Academy for Mathematics \& English}\hfill Jul 2024 -- Dec 2025
+\vspace{1mm}
+\begin{itemize}
+    \item Tutored math and physics one-on-one for elementary to university-prep students, breaking complex concepts into clear, practical explanations.
+    \item Designed personalized lesson plans and study materials to target individual learning gaps, improving students' test scores and conceptual understanding over multiple sessions.
+\end{itemize}
+\fi
+
+%==== Projects ====%
+\header{Projects}
+\vspace{1.5mm}
+
+\textbf{Ontario Nuclear Grid Analytics Dashboard} $|$
+\href{https://nuclear-dashboard.streamlit.app}{\underline{Live}} $\cdot$
+\href{https://github.com/danielzhang122/ontario-nuclear-dashboard}{\underline{GitHub}}
+\hfill Oct 2026
+\vspace{1mm}
+\vspace{1mm}
+\begin{itemize}
+    \item Built an end-to-end pipeline (Python $\rightarrow$ DuckDB $\rightarrow$ SQL $\rightarrow$ Streamlit) on 11.8M rows of IESO hourly generation, intertie, and price data for 193 generators (2019--2026).
+    \item Wrote 16 SQL queries using window functions to detect 206 multi-day outages across Ontario's 18 reactors, label 1.16M reactor-hours by operating state, and measure how gas, hydro, and imports filled each gap.
+    \item Quantified outage impacts on price and emissions; Darlington Unit 4's refurbishment added an estimated $\sim$64,000\,t of CO\textsubscript{2} in its first two weeks as gas covered the lost output.
+\end{itemize}
+\vspace{1.5mm}
+
+\textbf{12-DOF Quadruped Robot} $|$
+\href{https://github.com/danielzhang122/quadruped-robot}{\underline{GitHub}}
+\hfill Aug 2026
+\vspace{1mm}
+\begin{itemize}
+    \item Designed a 12-DOF quadruped in Autodesk Fusion with a print-ready chassis, integrating MG90S servos, a PCA9685 driver, and a Raspberry Pi Zero 2 W.
+    \item Developed a custom Inverse Kinematics (IK) solver for stable omnidirectional gait patterns, tested in MuJoCo, with OpenCV camera integration for autonomous obstacle avoidance.
+\end{itemize}
+\vspace{1.5mm}
+
+\iffalse
+\textbf{Compact Rechargeable Arc Lighter} \hfill May 2025 -- Jun 2025
+\vspace{1mm}
+\begin{itemize}
+    \item Engineered a custom DC boost converter to generate a stable 20-30 kV plasma arc, implementing multi-layer insulation and heat management for electrical safety.
+    \item Integrated a Li-ion power management module to regulate USB-C charging and safe discharge within a compact 75mm x 25mm footprint.
+\end{itemize}
+\vspace{1.5mm}
+\fi
+
+\textbf{Rate-Adaptive Pacemaker Firmware} $|$
+\href{https://github.com/danielzhang122/sfwreng-3k04-pacemaker}{\underline{GitHub}}
+\hfill Oct 2025 -- Dec 2025
+\vspace{1mm}
+\begin{itemize}
+    \item Developed pacemaker firmware in Simulink/Stateflow for an NXP FRDM-K64F, generating embedded C via Embedded Coder to support AOO, VOO, AAI, and VVI pacing modes.
+    \item Implemented rate-adaptive modes (AOOR, VOOR, AAIR, VVIR) using an FXOS8700 accelerometer, scaling pacing rate with patient activity via tunable threshold, reaction, and recovery times.
+\end{itemize}
+
+\iffalse
+\textbf{Ergonomic Wheelchair Storage System} \hfill Apr 2024
+\vspace{1mm}
+\begin{itemize}
+    \item Designed a wheelchair-mounted waterproof storage system for a client with Spina Bifida, improving accessibility through ergonomic placement and reduced reach effort.
+    \item Fabricated a 0.4 kg carbon-fiber-reinforced prototype in Autodesk Inventor with a 3.25:1 load-to-weight ratio, and authored comprehensive technical documentation detailing the design rationale and testing protocols.
+    \item Placed 3rd out of 200\texttt{+} teams and presented the final design to a panel of professional engineers and professors.
+\end{itemize}
+\fi
+\end{document}
