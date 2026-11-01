@@ -21,20 +21,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      # Pin the PDF's internal dates and ID to the last commit that changed resume.tex,
-      # so rebuilding unchanged source gives a byte-identical PDF and no new commit.
-      - name: Make the build reproducible
-        run: echo "SOURCE_DATE_EPOCH=$(git log -1 --format=%ct -- resume.tex)" >> "$GITHUB_ENV"
-
+      # resume.tex itself omits the build date and random ID from the PDF, so rebuilding
+      # unchanged source gives a byte-identical PDF and the commit step below finds nothing to commit.
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
           root_file: resume.tex
-        env:
-          FORCE_SOURCE_DATE: "1"
 
       - name: Install PDF and WebP tools
         run: sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils webp
