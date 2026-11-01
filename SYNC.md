@@ -56,7 +56,10 @@ except Exception as e: print("repo list failed:", e)
 EOF
 ```
 (`ls-remote` on the private `sfwreng-2md3` may need the local clone instead: compare with
-`git -C ../sfwreng-2md3 rev-parse origin/HEAD`.) Also run the website-PDF check in step 6.
+`git -C ../sfwreng-2md3 rev-parse origin/HEAD`.) If the repo list fails (the cloud environment
+often gets HTTP 403 from the public API), list repos with the GitHub MCP tool instead
+(`mcp__github__search_repositories` with query `user:danielzhang122 fork:false archived:false`) and
+compare names against `repos` and `ignore`. Also run the website-PDF check in step 6.
 If no repo is listed and the website PDF is current, end the run immediately with "Nothing to sync."
 Otherwise continue with only the listed repos.
 
