@@ -37,7 +37,7 @@ exactly. You never merge anything. Daniel reviews and merges every pull request 
    Check with `git log -1 --format='%an <%ae>'` before every push.
 9. **Personal data:** don't change the contact line, education, or dates of employment unless the
    site or a README states a new value explicitly.
-10. **Daniel rewords your drafts.** He rewrites merged bullets in his own voice so the résumé
+10. **Daniel rewords your drafts.** He rewords drafted bullets in his own voice before merging so the résumé
    doesn't read like AI output. Don't revert his wording to your draft or "polish" it; only edit a
    bullet he reworded if its facts no longer match the repos.
 
