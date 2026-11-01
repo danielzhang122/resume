@@ -30,7 +30,12 @@ exactly. You never merge anything. Daniel reviews and merges every pull request 
    the résumé. Flag it in the PR under "Inconsistencies found" instead (don't edit those repos).
 7. **Escape LaTeX properly:** `\&`, `\%`, `\$`, `\#`, `\_`, `C\texttt{++}`, `1,000\texttt{+}`,
    `--` for date ranges, `CO\textsubscript{2}`.
-8. **Personal data:** don't change the contact line, education, or dates of employment unless the
+8. **Commit as Daniel, never as Claude.** Before your first commit in any repo, run
+   `git config user.name "danielzhang122"` and
+   `git config user.email "98472640+danielzhang122@users.noreply.github.com"` in it. Check with
+   `git log -1 --format='%an <%ae>'` before every push. Commits by `Claude <noreply@anthropic.com>`
+   put Claude on the repo's contributors list, which Daniel does not want.
+9. **Personal data:** don't change the contact line, education, or dates of employment unless the
    site or a README states a new value explicitly.
 
 ## Procedure
@@ -38,39 +43,23 @@ exactly. You never merge anything. Daniel reviews and merges every pull request 
 Keep token use low: don't read files you don't need, and stop as soon as there's nothing to do.
 
 ### 0. Quick check (always first)
-Run this one command from this repo's folder. It prints the repos whose newest commit differs from
-the last-reviewed one, plus any new public repo:
-```sh
-python3 - <<'EOF'
-import json, subprocess, urllib.request
-s = json.load(open("sync-state.json"))
-known = set(s["repos"]) | set(s["ignore"])
-for r, sha in s["repos"].items():
-    out = subprocess.run(["git", "ls-remote", f"https://github.com/danielzhang122/{r}", "HEAD"],
-                         capture_output=True, text=True).stdout.split()
-    if not out or out[0] != sha: print("changed", r)
-try:
-    for x in json.load(urllib.request.urlopen("https://api.github.com/users/danielzhang122/repos?per_page=100")):
-        if not x["fork"] and not x["archived"] and x["name"] not in known: print("new", x["name"])
-except Exception as e: print("repo list failed:", e)
-EOF
-```
-(`ls-remote` on the private `sfwreng-2md3` may need the local clone instead: compare with
-`git -C ../sfwreng-2md3 rev-parse origin/HEAD`.) If the repo list fails (the cloud environment
-often gets HTTP 403 from the public API), list repos with the GitHub MCP tool instead
-(`mcp__github__search_repositories` with query `user:danielzhang122 fork:false archived:false`) and
-compare names against `repos` and `ignore`. Also run the website-PDF check in step 6.
-If no repo is listed and the website PDF is current, end the run immediately with "Nothing to sync."
-Otherwise continue with only the listed repos.
+From this repo's folder run `python3 scripts/check.py`. It reads `sync-state.json`, pulls every
+watched repo (all cloned beside this one), and prints one line per thing to do:
+`changed <repo> <files>`, `new <repo>`, `website-pdf stale`. Files listed in `exclude_paths` are the
+pipeline's own outputs (the résumé source and PDF, the state file, the website's copy of the PDF),
+so the pipeline's own commits never count as changes. If the output ends with `NOTHING TO SYNC`, end
+the run immediately with "Nothing to sync." and **commit nothing**. If it prints
+`repo-list unavailable` (the cloud often gets HTTP 403 from the public API), list repos with the
+GitHub MCP tool (`mcp__github__search_repositories`, query
+`user:danielzhang122 fork:false archived:false`) and treat any name not in `repos` or `ignore` as new.
+Continue with only the repos the check listed.
 
 ### 1. Load state
-- Read `sync-state.json`. `repos` maps each watched repo to the last commit SHA already reviewed.
-- Make sure each repo in `repos` is cloned and has full history (`git fetch --unshallow` if shallow).
-  Repos are cloned beside this one; if one is missing, clone it with
-  `git clone https://github.com/danielzhang122/<repo>`.
-- **New repos:** list public repos with
-  `curl -s "https://api.github.com/users/danielzhang122/repos?per_page=100"`. Any non-fork,
-  non-archived repo not in `repos` or `ignore` is new: clone it and review its whole content.
+- `repos` in `sync-state.json` maps each watched repo to the last commit already reviewed.
+- If a repo isn't cloned, clone it beside this one: `git clone https://github.com/danielzhang122/<repo>`.
+  For a new repo, review its whole content.
+- `resume` itself is watched: its README, `docs/`, `scripts/` and workflow describe this pipeline,
+  which is one of Daniel's projects. Treat changes there like any other project's.
 
 ### 2. Find what changed
 For each changed repo, start with `git log --oneline <last_sha>..HEAD` and
@@ -111,11 +100,12 @@ repos, and set `last_run` to today's date (YYYY-MM-DD).
 
 ### 6. Website PDF
 The site serves `Daniel_Zhang_Resume.pdf` and `images/resume-preview.webp` from the `website` repo.
-Compare `main` of this repo with the website's copies (`cmp` on the PDF). If they differ:
+Only act if step 0 printed `website-pdf stale`. If an open `Update résumé PDF` PR already carries
+the same PDF as this repo's `main`, do nothing (no duplicate PRs, no empty commits). Otherwise:
 - In the `website` repo, on branch `resume-pdf`, copy `Daniel_Zhang_Resume.pdf` and
   `resume-preview.webp` (to `images/resume-preview.webp`) from this repo's `main`, and update the
   line "PDF, one page, updated <Mon YYYY>." in `index.html` to the month of this repo's last
-  commit that changed `resume.tex`.
+  commit that changed `resume.tex` (only if the month actually differs).
 - Open (or update) a PR into the website's `main` titled `Update résumé PDF`, linking the
   résumé commit it came from. Touch nothing else in the website repo.
 

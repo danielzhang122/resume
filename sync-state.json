@@ -1,7 +1,8 @@
 {
   "last_run": "2026-11-01",
   "repos": {
-    "website": "7cff371c8d61607046adcbcf07c28cda533e742c",
+    "resume": "73393f95d939da2d782f74287d35c4bf72c000f2",
+    "website": "ce36c9e0d512d2663c6afc8c3091bf132a066f8e",
     "ontario-nuclear-dashboard": "732b12c2fe1d04331949ff6199ac6ab51406f067",
     "quadruped-robot": "3c259d2e18d3b4ff5430bcfcb5467359945a44c5",
     "globe-ghost": "297d8018a3cb9dc25e7335bd99aba97c2905f24c",
@@ -12,8 +13,11 @@
     "sfwreng-2md3": "ae106a99133dc276a66e09a6f6c8818b44fa417a",
     "danielzhang122": "6e54a3a5ecdedbb4869dff485297676c643296d5"
   },
+  "exclude_paths": {
+    "resume": ["resume.tex", "Daniel_Zhang_Resume.pdf", "resume-preview.webp", "sync-state.json"],
+    "website": ["Daniel_Zhang_Resume.pdf", "images/resume-preview.webp"]
+  },
   "ignore": [
-    "resume",
     "claude-config",
     "danielzhang122.github.io",
     "SFWRENG-3k04-Project"
