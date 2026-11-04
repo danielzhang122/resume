@@ -66,7 +66,7 @@ Create a weekly scheduled task (a Claude Code routine) with:
 
 - **Repository:** their résumé repo, plus the website repo if they have one. The environment must
   be able to clone their other public repos (GitHub access/network to `github.com`).
-- **Schedule:** weekly, at a quiet hour in their time zone (Daniel's runs Sundays 06:00 Eastern).
+- **Schedule:** weekly, at a quiet hour in their time zone (Daniel's runs Mondays 07:00 Eastern, right after his usage limit resets).
 - **Prompt** (fill in the names):
 
   > You are the weekly résumé sync agent for Jane Doe. Open the résumé repo and follow its SYNC.md
