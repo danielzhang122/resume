@@ -3,7 +3,7 @@
 **This file is written for Claude** (or any coding agent). A person who wants the pipeline points
 their agent here, for example:
 
-> Set up the résumé sync from https://github.com/danielzhang122/resume for me. Follow its INSTALL.md.
+> Set up the résumé sync from https://github.com/danielzhang122/resume-sync for me. Follow its INSTALL.md.
 
 What they get: a weekly agent that diffs their GitHub repos since last week, drafts résumé edits that
 cite the commit behind each claim, has CI build the PDF and fail if it runs past one page, and opens
